@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "json_parser.h"
+#include "battle_mechanics.h"
+
 
 
 
@@ -253,4 +255,59 @@ void readFileAndParseHeroes(const char* filename) {
 }
 
 // Yetenek seviyesi verisini ayrıştıran fonksiyon
- 
+ void parseSkillLevel(const char* line, SkillLevel* level) {
+    if (strstr(line, "\"deger\"")) {
+        sscanf(line, " \"deger\": \"%[^\"]\"", level->value);
+    } else if (strstr(line, "\"aciklama\"")) {
+        sscanf(line, " \"aciklama\": \"%[^\"]\"", level->description);
+    }
+}
+
+// JSON dosyasını okuyup yetenekleri ayrıştıran ana fonksiyon
+void readFileAndParseSkills(const char* filename) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Dosya açılamadı: %s\n", filename);
+        return;
+    }
+
+    char line[256];
+    Skill currentSkill;
+    int levelIndex = 0;  // Her yeteneğin seviyeleri için
+    memset(&currentSkill, 0, sizeof(currentSkill)); // Belleği temizle
+    int isSkillActive = 0;  // Yeni bir yetenek başladığında 1 olacak
+
+    while (fgets(line, sizeof(line), file)) {
+        if (strstr(line, "\"savunma_ustaligi\"") || strstr(line, "\"saldiri_gelistirmesi\"") || 
+            strstr(line, "\"elit_egitim\"") || strstr(line, "\"kusatma_ustaligi\"")) {
+            // Eğer daha önce bir yetenek işleniyorsa, onu ekle
+            if (isSkillActive) {
+                skills[skillCount++] = currentSkill;
+                memset(&currentSkill, 0, sizeof(currentSkill)); // Yetenek tamamlandıktan sonra sıfırla
+            }
+
+            // Yeni bir yetenek başlıyor, özelliklerini sıfırla
+            sscanf(line, " \"%[^\"]\"", currentSkill.name);
+            levelIndex = 0;  // Seviye sayacını sıfırla
+            isSkillActive = 1;  // Yeni bir yetenek aktif
+        } else if (strstr(line, "seviye_1") || strstr(line, "seviye_2") || strstr(line, "seviye_3")) {
+            // Seviye adını kaydet
+            sscanf(line, " \"%[^\"]\": {", currentSkill.levels[levelIndex].level);
+        } else if (strstr(line, "}")) {
+            // Bir seviye veya yetenek tamamlandıysa
+            if (isSkillActive && levelIndex < 3) {
+                levelIndex++;  // Seviye tamamlandı, bir sonraki seviyeye geç
+            }
+        } else {
+            // Yetenek seviyesini ayrıştır
+            parseSkillLevel(line, &currentSkill.levels[levelIndex]);
+        }
+    }
+
+    // Son yetenek işleniyorsa onu da ekle
+    if (isSkillActive) {
+        skills[skillCount++] = currentSkill;
+    }
+
+    fclose(file);
+}

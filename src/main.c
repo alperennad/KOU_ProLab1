@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "json_parser.h"  // Birim ayrıştırma işlemleri için
-#include "unit_counts.h"
+#include "url.h"
+#include "battle_mechanics.h"
 
 
 int main() {
@@ -13,7 +14,13 @@ int main() {
     // Yetenekleri JSON dosyasından ayrıştır
     readFileAndParseSkills("../Files/research.json");
 
-    printf("Piyade sayısı: %d\n", piyadeler_count);
+    char *apiURL = "https://yapbenzet.org.tr/4.json";
+    fetchAndParseData(apiURL);  // Veriyi al ve ayrıştır
 
-    return 0;
+    
+    battle();
+    
+    
+
+
 }

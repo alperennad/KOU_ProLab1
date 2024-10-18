@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
+#include "url.h"
+#include "battle_mechanics.h"
+
 
 // Yanıt verisini tutmak için bir yapı
 struct Response {
@@ -35,6 +38,14 @@ int ork_dovusculeri_count = 0;
 int mizrakcilar_count = 0;
 int troller_count = 0;
 int varg_binicileri_count = 0;
+int research_level = 0;
+int research_level2 = 0;
+char research_name2[50];
+char research_name[50];
+char heroName[50];
+char heroName2[50];
+char creatureName[50];
+char creatureName2[50];
 
 // Manuel JSON ayrıştırma fonksiyonu
 void parseJSON(const char *jsonData) {
@@ -44,57 +55,115 @@ void parseJSON(const char *jsonData) {
     ptr = strstr(jsonData, "\"piyadeler\"");
     if (ptr != NULL) {
         sscanf(ptr, "\"piyadeler\": %d", &piyadeler_count);
-        printf("Piyadeler sayısı: %d\n", piyadeler_count);
+        //printf("Piyadeler sayısı: %d\n", piyadeler_count);
     }
 
     // Okçular sayısını al
     ptr = strstr(jsonData, "\"okcular\"");
     if (ptr != NULL) {
         sscanf(ptr, "\"okcular\": %d", &okcular_count);
-        printf("Okçular sayısı: %d\n", okcular_count);
+        //printf("Okçular sayısı: %d\n", okcular_count);
     }
 
     // Süvariler sayısını al
     ptr = strstr(jsonData, "\"suvariler\"");
     if (ptr != NULL) {
         sscanf(ptr, "\"suvariler\": %d", &suvariler_count);
-        printf("Süvariler sayısı: %d\n", suvariler_count);
+        //printf("Süvariler sayısı: %d\n", suvariler_count);
     }
 
     // Kuşatma makineleri sayısını al
     ptr = strstr(jsonData, "\"kusatma_makineleri\"");
     if (ptr != NULL) {
         sscanf(ptr, "\"kusatma_makineleri\": %d", &kusatma_makineleri_count);
-        printf("Kuşatma Makineleri sayısı: %d\n", kusatma_makineleri_count);
+        //printf("Kuşatma Makineleri sayısı: %d\n", kusatma_makineleri_count);
     }
 
     // Ork Lejyonu Birimleri
     ptr = strstr(jsonData, "\"ork_dovusculeri\"");
     if (ptr != NULL) {
         sscanf(ptr, "\"ork_dovusculeri\": %d", &ork_dovusculeri_count);
-        printf("Ork dövüşçüleri sayısı: %d\n", ork_dovusculeri_count);
+        //printf("Ork dövüşçüleri sayısı: %d\n", ork_dovusculeri_count);
     }
 
     ptr = strstr(jsonData, "\"mizrakcilar\"");
     if (ptr != NULL) {
         sscanf(ptr, "\"mizrakcilar\": %d", &mizrakcilar_count);
-        printf("Mızrakçılar sayısı: %d\n", mizrakcilar_count);
+        //printf("Mızrakçılar sayısı: %d\n", mizrakcilar_count);
     }
 
     ptr = strstr(jsonData, "\"varg_binicileri\"");
     if (ptr != NULL) {
         sscanf(ptr, "\"varg_binicileri\": %d", &varg_binicileri_count);
-        printf("Varg binicileri sayısı: %d\n", varg_binicileri_count);
+        //printf("Varg binicileri sayısı: %d\n", varg_binicileri_count);
     }
 
     ptr = strstr(jsonData, "\"troller\"");
     if (ptr != NULL) {
         sscanf(ptr, "\"troller\": %d", &troller_count);
-        printf("Troller sayısı: %d\n", troller_count);
+        //printf("Troller sayısı: %d\n", troller_count);
+    }
+
+    ptr = strstr(jsonData, "\"insan_imparatorlugu\"");
+    if (ptr != NULL) {
+        ptr = strstr(ptr, "\"arastirma_seviyesi\"");
+        if (ptr != NULL) {
+            sscanf(ptr, "\"arastirma_seviyesi\": { \"%[^\"]\": %d", research_name, &research_level);
+        }
+    }
+
+    goto ork_research;
+
+    ork_research:
+    ptr = strstr(jsonData, "\"ork_legi\"");
+    if (ptr != NULL) {
+        ptr = strstr(ptr, "\"arastirma_seviyesi\"");
+        if (ptr != NULL) {
+            sscanf(ptr, "\"arastirma_seviyesi\": { \"%[^\"]\": %d", research_name2, &research_level2);
+        }
+    }
+
+    ptr = strstr(jsonData, "\"insan_imparatorlugu\"");
+    if (ptr != NULL) {
+        ptr = strstr(ptr, "\"kahramanlar\"");
+        if (ptr != NULL) {
+            sscanf(ptr, "\"kahramanlar\": [ \"%[^\"]", heroName);            
+        }
+    }
+
+    goto ork_hero;
+
+    ork_hero:
+    ptr = strstr(jsonData, "\"ork_legi\"");
+    if (ptr != NULL) {
+        ptr = strstr(ptr, "\"kahramanlar\"");
+        if (ptr != NULL) {
+            sscanf(ptr, "\"kahramanlar\": [ \"%[^\"]", heroName2);            
+        }
+    }
+
+    ptr = strstr(jsonData, "\"insan_imparatorlugu\"");
+    if (ptr != NULL) {
+        ptr = strstr(ptr, "\"canavarlar\"");
+        if (ptr != NULL) {
+            sscanf(ptr, "\"canavarlar\": [ \"%[^\"]", creatureName);            
+        }
+    }
+
+    goto ork_creature;
+
+    ork_creature:
+    ptr = strstr(jsonData, "\"ork_legi\"");
+    if (ptr != NULL) {
+        ptr = strstr(ptr, "\"canavarlar\"");
+        if (ptr != NULL) {
+            sscanf(ptr, "\"canavarlar\": [ \"%[^\"]", creatureName2);            
+        }
     }
 }
 
-int main(void) {
+// Veriyi almak ve ayrıştırmak için işlev
+void fetchAndParseData(char *apiURL) {
     CURL *curl;
     CURLcode res;
 
@@ -106,7 +175,7 @@ int main(void) {
     curl = curl_easy_init();
     if (curl) {
         // URL'yi ayarla
-        curl_easy_setopt(curl, CURLOPT_URL, "https://yapbenzet.org.tr/2.json");
+        curl_easy_setopt(curl, CURLOPT_URL, apiURL);
 
         // Tarayıcıyı simüle etmek için kullanıcı aracısını belirleyin
         curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
@@ -132,6 +201,5 @@ int main(void) {
 
     // Kullanılmayan belleği serbest bırak
     free(response.data);
-
-    return 0;
 }
+

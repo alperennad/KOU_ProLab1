@@ -1,0 +1,70 @@
+1. adım insan saldıracak
+    
+    kahraman kontrolu yap
+    canavar kontrolu yap
+    arastırma seviyesi kontrolu yap
+
+    kritik sans kontorlu yap
+    
+    insan birimlerinin atak gücü hesaplanmalı
+    ork birimlerinin savunma gücü hesaplanmalı
+
+    insan birimlerinin toplam saldırı gücü hesaplanmalı
+    ork virimlerinin toplam savunma gucu hesaplanmalı
+    ork birimlerinin birim basi savunması hesaplanmalı
+    net hasar hesaplanmalı = toplam saldırı * (1 - savunma/saldırı)
+    net hasara göre birim hasar hesaplanmalı
+    -->  net hasar / bırım bası asvunma
+    olenler hesaplanmalı
+    --> birim basına hasar / birimin saglıgı = birimin olen sayısı
+
+2. adım ork saldıracak
+
+    yeni ork birimlerinin sayısını hesapla
+    yeni ork birimlerinin saldırı gucunu hesapla
+    insan bririmlerini savunma gucunu hesapla
+
+    yeni ork birimlerinin toplam gucunu hesapla
+    insan birimlerinin savunma gucunu hesapla
+    net hasarı hesapla
+    birim basına savunmayı bul
+    olen birim sayısını bul
+
+
+
+
+
+
+
+
+
+3. adım insan saldıracak
+
+
+
+
+
+
+4. adımn ork saldıracak
+
+
+
+
+5.adım insan saldıracak
+insanın saldırması %90
+orkun savunması %90
+
+
+10.adım 
+orkun saldırısı %90 %90
+insanın saldırsının %90 %90
+
+
+kritikhesaplama(int i , char * ){
+    i = step 
+    if (i % 5 == 0  &&( char * = piyade) || char * = suvarı )
+        piyade * 1.5
+        suvari * 1.5
+}
+
+
