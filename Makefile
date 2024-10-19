@@ -1,6 +1,6 @@
 # Değişkenler
 CC = gcc
-SDL_FLAGS = `sdl2-config --cflags --libs` -lSDL2_image
+SDL_FLAGS = -I/opt/homebrew/include/SDL2 -L/opt/homebrew/lib -lSDL2 -lSDL2_image
 CURL_FLAGS = -lcurl
 
 # Hedefler
