@@ -14,13 +14,10 @@ int main() {
     // Yetenekleri JSON dosyasından ayrıştır
     readFileAndParseSkills("../Files/research.json");
 
-    char *apiURL = "https://yapbenzet.org.tr/4.json";
+    char *apiURL = "https://yapbenzet.org.tr/1.json";
     fetchAndParseData(apiURL);  // Veriyi al ve ayrıştır
 
     
     battle();
-    
-    
-
 
 }

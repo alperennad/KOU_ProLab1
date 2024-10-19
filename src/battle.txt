@@ -1,5 +1,24 @@
 1. adım insan saldıracak
-    
+    **********ONEMLIIIII**************
+    insan saldırırken orkların defansı için olan kahraman, canavar ve arastırma seviyeleri kontrolu yapılmalı.
+
+    **net hasar ve birim hasar hesaplamalarında bolumun sonucu 0 oldugundan float type cast edildi.
+    else ifler if yapıldı herhangi birine girmesi halinde digerlerini kontrol etmiyordu
+    can kontrolleri yapılmalı 
+    varg_binicileriCan = 100;
+    varg_binicileriCan -= varg_binicileriHasar
+    if (varg_binicileriCan <= 0)
+        birim ölmeli
+
+    birimi oldurecek hasar verilmedigi senaryoda canı azalmalı ki diger turda yine hasar versin ve canı bitince ölsün
+    can = birim_sayisi * birimcani
+    bir birimde kişi başı hasar = birim_hasar / birim_sayisi
+
+    eger olen yoksa can kontrolou yapılmalı olen varsa zaten hasar onları oldurmeye godecek
+    yeni olen sayisi = birim hasar / kalan can 
+
+    birim direkt olarak yok olmayacak toplu olum gerceklesecek eger 3 kare 
+
     kahraman kontrolu yap
     canavar kontrolu yap
     arastırma seviyesi kontrolu yap
