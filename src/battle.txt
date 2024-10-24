@@ -1,3 +1,5 @@
+https://github.com/lmachens/soc.th.gl/tree/main/public/units
+
 1. adım insan saldıracak
     **********ONEMLIIIII**************
     insan saldırırken orkların defansı için olan kahraman, canavar ve arastırma seviyeleri kontrolu yapılmalı.

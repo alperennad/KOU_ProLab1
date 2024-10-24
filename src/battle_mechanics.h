@@ -24,4 +24,12 @@ int NetHasar(int savunma, int saldiri);
 int olenBirimSayisi(int birim_hasar, int health);
 int battle();
 
+extern int piyade_health;
+extern int okcu_health;
+extern int suvari_health;
+extern int kusatmaMakineleri_health;
+extern int orkDovusculeri_health;
+extern int mizrakcilar_health;
+extern int vargBinicileri_health;
+extern int troller_health;
 #endif

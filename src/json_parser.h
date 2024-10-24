@@ -8,8 +8,7 @@ typedef struct {
     int defense;
     int health;
     int criticalChance;
-} Unit; //strt Unit[0].attack * UnitCount
-
+} Unit;
 
 // Creatures
 typedef struct {

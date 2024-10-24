@@ -1,0 +1,137 @@
+Insan Irkı Birimleri:
+Piyadeler: 1
+Okcular: 1
+Suvariler: 1
+Kuşatma Makineleri: 1
+Aktif Kahraman: 
+Aktif Canavar: 
+1 . Adım
+Piyade Atak: 30
+Okçu Atak: 40
+Suvari Atak: 50
+Kuşatma Makineleri Atak: 100
+Ork Dovusculeri Defans: 25
+Mizrakcilar Defans: 20
+Troller Defans: 40
+Human Atak: 220
+Ork Defans: 120
+Net Hasar: 100
+Ork Dovusculeri Hasar: 20
+Ork Dovusculeri Health: 80
+Mizrakcilar Defans: 20
+Mizrakcilar Hasar: 16
+Mizrakcilar Vurulduktan Sonraki Health: 74
+Varg Binicileri Hasar2: 0
+Varg Binicileri Hasar3: 29
+Varg Binicileri Vurulduktan sonraki Health: 101
+Troller Hasar: 33
+Troller Health: 167
+
+------------------------------------------------
+Ork Lejyonu Birimleri:
+Ork Dovusculeri: 1
+Mizrakcilar: 1
+2 . Adım - (Ork Lejyonu Saldırıyor)
+__________________________________3 . Adım
+Piyade Atak: 30
+Okçu Atak: 40
+Suvari Atak: 50
+Kuşatma Makineleri Atak: 100
+Ork Dovusculeri Defans: 25
+Mizrakcilar Defans: 20
+Troller Defans: 40
+Human Atak: 220
+Ork Defans: 120
+Net Hasar: 100
+Ork Dovusculeri Hasar: 20
+Ork Dovusculeri Health: 60
+Mizrakcilar Defans: 20
+Mizrakcilar Hasar: 32
+Mizrakcilar Vurulduktan Sonraki Health: 42
+Varg Binicileri Hasar2: 0
+Varg Binicileri Hasar3: 29
+Varg Binicileri Vurulduktan sonraki Health: 72
+Troller Hasar: 33
+Troller Health: 134
+
+------------------------------------------------
+4 . Adım - (Ork Lejyonu Saldırıyor)
+__________________________________5 . Adım
+Piyade Atak: 45
+Okçu Atak: 40
+Suvari Atak: 50
+Kuşatma Makineleri Atak: 100
+Ork Dovusculeri Defans: 25
+Mizrakcilar Defans: 20
+Troller Defans: 40
+Human Atak: 211
+Ork Defans: 108
+Net Hasar: 103
+Ork Dovusculeri Hasar: 21
+Ork Dovusculeri Health: 39
+Mizrakcilar Defans: 20
+Mizrakcilar Hasar: 49
+Mizrakcilar Vurulduktan Sonraki Health: -7
+Kalan Hasar: 7
+Varg Binicileri Hasar1: 0
+Varg Binicileri Hasar2: 2
+Varg Binicileri Hasar3: 32
+Varg Binicileri Vurulduktan sonraki Health: 40
+Troller Hasar: 37
+Troller Health: 97
+
+------------------------------------------------
+6 . Adım - (Ork Lejyonu Saldırıyor)
+__________________________________7 . Adım
+Piyade Atak: 30
+Okçu Atak: 40
+Suvari Atak: 75
+Kuşatma Makineleri Atak: 100
+Ork Dovusculeri Defans: 25
+Mizrakcilar Defans: 0
+Troller Defans: 40
+Human Atak: 245
+Ork Defans: 100
+Net Hasar: 144
+Ork Dovusculeri Hasar: 37
+Ork Dovusculeri Health: 2
+Mizrakcilar Defans: 0
+Mizrakcilar Hasar: 49
+Mizrakcilar Vurulduktan Sonraki Health: -2147483647
+Kalan Hasar: 0
+Varg Binicileri Hasar1: 0
+Varg Binicileri Hasar2: 0
+Varg Binicileri Hasar3: 50
+Varg Binicileri Vurulduktan sonraki Health: -10
+Troller Hasar: 63
+Troller Health: 34
+
+------------------------------------------------
+8 . Adım - (Ork Lejyonu Saldırıyor)
+__________________________________9 . Adım
+Piyade Atak: 30
+Okçu Atak: 40
+Suvari Atak: 50
+Kuşatma Makineleri Atak: 100
+Ork Dovusculeri Defans: 25
+Mizrakcilar Defans: 0
+Troller Defans: 40
+Human Atak: 220
+Ork Defans: 65
+Net Hasar: 155
+Ork Dovusculeri Hasar: 62
+Ork Dovusculeri Health: -60
+Mizrakcilar Hasar: 0
+Mizrakcilar Defans: 0
+Mizrakcilar Hasar: 49
+Mizrakcilar Vurulduktan Sonraki Health: -2147483647
+Kalan Hasar: 0
+Varg Binicileri Hasar1: 0
+Varg Binicileri Hasar2: 0
+Varg Binicileri Hasar3: 0
+Varg Binicileri Vurulduktan sonraki Health: 0
+Troller Hasar: 95
+Troller Health: -61
+
+------------------------------------------------
+insan kazandı
