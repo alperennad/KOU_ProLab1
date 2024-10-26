@@ -39,13 +39,11 @@ typedef struct {
 } Skill;
 
 
-// Global diziler ve sayaçlar
 extern Creature humanCreatures[10];   // İnsan İmparatorluğu canavarları
 extern Creature orkCreatures[10];     // Ork Lejyonu canavarları
 extern int humanCreatureCount;        // İnsan İmparatorluğu canavar sayısı
 extern int orkCreatureCount;          // Ork Lejyonu canavar sayısı
 
-// Diziler ve sayaçlar
 extern Unit humanUnits[10];
 extern Unit orkUnits[10];
 extern int humanCount;
@@ -57,15 +55,13 @@ extern Hero orkHeroes[10];            // Ork Lejyonu kahramanları
 extern int humanHeroCount;            // İnsan İmparatorluğu kahraman sayısı
 extern int orkHeroCount;              // Ork Lejyonu kahraman sayısı
 
-//Yetenek Dizi ve Sayac
 extern Skill skills[10];   // Yetenek verileri
 extern int skillCount;     // Yetenek sayısı
 
 // Fonksiyonlar
-void parseUnit(const char* line, Unit* unit);
-void readFileAndParseCreatures(const char* filename);  // Canavarları JSON dosyasından ayrıştırır
+void readFileAndParseCreatures(const char* filename);
 void readFileAndParseHeroes(const char* filename); 
-void readFileAndParseSkills(const char* filename);  // Yetenekleri JSON dosyasından ayrıştırır
+void readFileAndParseSkills(const char* filename);
 void readFileAndParse(const char* filename);
 
 #endif

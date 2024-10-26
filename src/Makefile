@@ -3,7 +3,7 @@ CC = gcc
 CURL_FLAGS = -lcurl -I/opt/homebrew/include/SDL2 -L/opt/homebrew/lib -lSDL2 -lSDL2_image
 
 # Hedefler
-all: game
+all: clean game
 
 # url hedefi
 game:

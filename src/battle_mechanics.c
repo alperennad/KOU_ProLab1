@@ -1,5 +1,3 @@
-//derleme : cc main.c url.c json_parser.c battle_mechanics.c -lcurl
-
 #include "url.h"
 #include "json_parser.h"
 #include "battle_mechanics.h"
@@ -126,8 +124,30 @@ int mizrakcilar_health = 90;
 int vargBinicileri_health = 130;
 int troller_health = 200;
 
+int calculateCriticalChance(int criticalChance){
+    return (float)1 / (float)criticalChance * 100; 
+}
+
+//Senaryoda olmayan birimlerin can barını düzenlemek için
+void HealthCheck(int piyadeler_count, int okcular_count, int suvariler_count, int kusatma_makineleri_count, int ork_dovusculeri_count, int mizrakcilar_count, int varg_binicileri_count, int troller_count){
+    if(piyadeler_count == 0) piyade_health = 0;
+    if(okcular_count == 0) okcu_health = 0;
+    if(suvariler_count == 0) suvari_health = 0;
+    if(kusatma_makineleri_count == 0) kusatmaMakineleri_health = 0;
+    if(ork_dovusculeri_count == 0) orkDovusculeri_health = 0;
+    if(mizrakcilar_count == 0) mizrakcilar_health = 0;
+    if(varg_binicileri_count == 0) vargBinicileri_health = 0;
+    if(troller_count == 0) troller_health = 0;
+
+}
+
+int tempPiyade; int tempOkcu; int tempSuvari; int tempKusatmaMakineleri;
+int tempOrkDovusculeri; int tempMizrakcilar; int tempVargBinicileri; int tempTroller;
+
 int battle() {
 int step = 1;
+int orkStep = 1;
+int humanStep = 1;
 
 //Hasar Tanımlamaları
 int piyadeHasar = 0;
@@ -136,17 +156,16 @@ int suvariHasar = 0;
 int kusatmaMakineleriHasar = 0;
 int ork_dovusculeriHasar = 0;
 int mizrakcilarHasar = 0;
-int mizrakcilarTemelHasar = 0;
 int varg_binicileriHasar = 0;
 int trollerHasar = 0;
 int kalanHasar = 0;
 
-FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
+
+FILE *file = fopen("battle_sim.txt", "w+");
     if (!file) {
-        perror("Could not open battle_sim.txt");
-        return -1; // Return an error if the file cannot be opened
+        printf("battle_sim.txt açılamadı!");
     }
-//calculateHumanUnits() > 0 && calculateOrkUnits() > 0
+
     while (calculateHumanUnits() > 0 && calculateOrkUnits() > 0){
 
         if(step == 1){
@@ -157,23 +176,26 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
             fprintf(file,"Kuşatma Makineleri: %d\n", kusatma_makineleri_count);
             fprintf(file,"Aktif Kahraman: %s\n",heroName);
             fprintf(file,"Aktif Canavar: %s\n",creatureName);
-        }
-        if(step == 2){
+            fprintf(file,"Aktif Araştırma ve Seviyesi : %s %d\n\n",research_name,research_level);
             fprintf(file,"Ork Lejyonu Birimleri:\n");
             fprintf(file,"Ork Dovusculeri: %d\n",ork_dovusculeri_count);
             fprintf(file,"Mizrakcilar: %d\n",mizrakcilar_count);
-            
+            fprintf(file,"Varg Binicileri: %d\n",varg_binicileri_count);
+            fprintf(file,"Troller: %d\n",troller_count);
+            fprintf(file,"Aktif Kahraman: %s\n",heroName2);
+            fprintf(file,"Aktif Canavar: %s\n",creatureName2);
+            fprintf(file,"Aktif Araştırma ve Seviyesi : %s %d\n",research_name2,research_level2);
         }
         if (step % 2 == 0)
         {
-            fprintf(file,"%d . Adım - ", step);
+            
+            fprintf(file,"\n%d . Adım - ", step);
             fprintf(file,"(Ork Lejyonu Saldırıyor)\n");
-            fprintf(file,"__________________________________");
+            fprintf(file,"__________________________________\n");
 
-            //Ork saldırır
             if (ork_dovusculeri_count > 0){
-                if(step % orkUnits[0].criticalChance == 0){
-                    orkDovusculeriAtak *= 1.5;
+                if(orkStep % calculateCriticalChance(orkUnits[0].criticalChance) == 0){
+                    orkDovusculeriAtak = calculateOrkDovusculeriAttack() * 1.5;
                 }
                 else{
                     orkDovusculeriAtak = calculateOrkDovusculeriAttack();
@@ -182,31 +204,34 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
                     orkDovusculeriAtak *= 1.2;
                 }
             }
+            fprintf(file,"Ork Dovusculeri Atak: %d\n", orkDovusculeriAtak);
             if (mizrakcilar_count > 0){
-                if(step % orkUnits[1].criticalChance == 0){
-                    mizrakcilarAtak *= 1.5;
+                if(orkStep% calculateCriticalChance(orkUnits[1].criticalChance) == 0){
+                    mizrakcilarAtak = calculateMizrakcilarAttack() * 1.5;
                 }
                 else{
                     mizrakcilarAtak = calculateMizrakcilarAttack();
                 }
             }
+            fprintf(file,"Mizrakcilar Atak: %d\n", mizrakcilarAtak);
             if (varg_binicileri_count > 0){
-                if(step % orkUnits[2].criticalChance == 0){
-                    vargBinicileriAtak *= 1.5;
+                if(orkStep% calculateCriticalChance(orkUnits[2].criticalChance) == 0){
+                    vargBinicileriAtak = varg_binicileri_count * orkUnits[2].attack * 1.5;
                 }
                 else{
-                    vargBinicileriAtak = calculateVargBinicileriAttack();
+            fprintf(file,"Varg Binicileri Sayısı: %d\n", varg_binicileri_count);
+
+                    vargBinicileriAtak = varg_binicileri_count * orkUnits[2].attack;
                 }
                 if (strcmp(creatureName2, "Ates_Iblisi") == 0) {
                     vargBinicileriAtak *= 1.3;
                 }
-                if (strcmp(heroName2, "Vrog_Kafakiran") == 0 && step % orkUnits[2].criticalChance == 0){
-                    
-                }
             }
+            fprintf(file,"Varg Binicileri Sayısı: %d\n", varg_binicileri_count);
+            fprintf(file,"Varg Binicileri Atak: %d\n", vargBinicileriAtak);
             if (troller_count > 0){
-                if (step % orkUnits[3].criticalChance == 0) {
-                    trollerAtak *= 1.5;
+                if (orkStep% calculateCriticalChance(orkUnits[3].criticalChance) == 0) {
+                    trollerAtak = calculateTrollerAttack() * 1.5;
                 }
                 else{
                     trollerAtak = calculateTrollerAttack();
@@ -215,6 +240,7 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
                     trollerAtak *= 1.2;
                 }
             }
+            fprintf(file,"Troller Atak: %d\n", trollerAtak);
             if (piyadeler_count > 0){
                 piyadeDefans = calculatePiyadeDefense();
                 if (strcmp(creatureName, "Samur") == 0) {
@@ -224,21 +250,25 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
                     piyadeDefans *= 1.2;
                 }
             }
+            fprintf(file,"Piyade Defans: %d\n", piyadeDefans);
             if (okcular_count > 0){
                 okcuDefans = calculateOkcuDefense();
                 if (strcmp(heroName, "Metehan") == 0) {
                     okcuDefans *= 1.2;
                 }
             }
+            fprintf(file,"Okcu Defans: %d\n", okcuDefans);
             if (suvariler_count > 0){
                 suvariDefans = calculateSuvariDefense();
                 if(strcmp(creatureName, "Agri_Dagi_Devleri") == 0){
                     suvariDefans *= 1.20;
                 }
             }
+            fprintf(file,"Suvari Defans: %d\n", suvariDefans);
             if (kusatma_makineleri_count > 0){
                 kusatmaMakineleriDefans = calculateKusatmaMakineleriDefense(); 
             }
+            fprintf(file,"Kusatma Makineleri Defans: %d\n", kusatmaMakineleriDefans);
             //Kahraman,Canavar veya Araştırma Etkilerinde toplu değer artışı olabilir.
             orkAtak = orkDovusculeriAtak + mizrakcilarAtak + vargBinicileriAtak + trollerAtak;
             humanDefans = piyadeDefans + okcuDefans + suvariDefans + kusatmaMakineleriDefans;
@@ -268,7 +298,8 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
             }
             
             //YORGUNLUK KONTROLU
-            if(step % 5 == 0){
+            int isTired = 1;
+            if(step >= 5 && isTired == 1){
                 int yorgunlukSeviyesi = step / 5;
                 float yorgunlukEtkeni = 1;
                 for(int i=0; i < yorgunlukSeviyesi; i++){
@@ -276,83 +307,118 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
                 }
                 humanDefans *= yorgunlukEtkeni;
                 orkAtak *= yorgunlukEtkeni;
+                isTired = 0;
             }
+
+            fprintf(file,"Ork Atak: %d\n", orkAtak);
+            fprintf(file,"İnsan Defans: %d\n", humanDefans);
             int nethasar = NetHasar(humanDefans, orkAtak);
             if (nethasar < 0) {
                 nethasar = 0;
             }
-            //Orklar Savaşıyor
+            fprintf(file,"Net Hasar: %d\n", nethasar);
+
             piyadeHasar += nethasar * ((float)piyadeDefans / (float)humanDefansSabit);
+            fprintf(file,"Piyade Hasar: %d\n", piyadeHasar);
             piyade_health -= reduceHealth(piyadeHasar, piyadeler_count);
             piyadeHasar = 0;
             if (piyade_health < 0) {
                 humanDefans -= piyadeDefans;
                 piyadeDefans = 0;
                 kalanHasar = damageLeft(piyade_health, piyadeler_count);
+                fprintf(file,"  Piyadeler Yok Oldu Kalan Hasar: %d\n", kalanHasar);
                 okcuHasar += damageLeftEach(kalanHasar, okcuDefans, humanDefans);
                 suvariHasar += damageLeftEach(kalanHasar, suvariDefans, humanDefans);
                 kusatmaMakineleriHasar += damageLeftEach(kalanHasar, kusatmaMakineleriDefans, humanDefans);
         
+                piyadeAtak = 0;
+                piyadeDefans = 0;
+                piyadeHasar = 0;
                 kalanHasar = 0;
+                tempPiyade = piyadeler_count;
                 piyadeler_count = 0;
                 piyade_health = 0;
             }
+            fprintf(file,"Piyade Kalan Can: %d\n", piyade_health);
 
             okcuHasar += nethasar * ((float)okcuDefans / (float)humanDefansSabit);
+            fprintf(file,"Okcu Hasar: %d\n", okcuHasar);
             okcu_health -= reduceHealth(okcuHasar, okcular_count);
             okcuHasar = 0;
             if (okcu_health < 0) {
                 humanDefans -= okcuDefans;
                 okcuDefans = 0;
                 kalanHasar = damageLeft(okcu_health, okcular_count);
+                fprintf(file,"  Okcular Yok Oldu Kalan Hasar: %d\n", kalanHasar);
                 suvariHasar += damageLeftEach(kalanHasar, suvariDefans, humanDefans);
                 kusatmaMakineleriHasar += damageLeftEach(kalanHasar, kusatmaMakineleriDefans, humanDefans);
                 ork_dovusculeriHasar += damageLeftEach(kalanHasar, orkDovusculeriDefans, humanDefans);
 
-                kalanHasar = 0;                
+                okcuAtak = 0;
+                okcuDefans = 0;
+                okcuHasar = 0;
+                kalanHasar = 0;           
+                tempOkcu = okcular_count;     
                 okcular_count = 0;
                 okcu_health = 0;
             }
+            fprintf(file,"Okcu Kalan Can: %d\n", okcu_health);
 
             suvariHasar += nethasar * ((float)suvariDefans / (float)humanDefansSabit);
+            fprintf(file,"Suvari Hasar: %d\n", suvariHasar);
             suvari_health -= reduceHealth(suvariHasar, suvariler_count);
             suvariHasar = 0;
             if (suvari_health < 0) {
                 humanDefans -= suvariDefans;
                 suvariDefans = 0;
                 kalanHasar = damageLeft(suvari_health, suvariler_count);
+                fprintf(file,"  Suvariler Yok Oldu Kalan Hasar: %d\n", kalanHasar);
                 kusatmaMakineleriHasar += damageLeftEach(kalanHasar, kusatmaMakineleriDefans, humanDefans);
                 okcuHasar += damageLeftEach(kalanHasar, okcuDefans, humanDefans);
                 piyadeHasar += damageLeftEach(kalanHasar, piyadeDefans, humanDefans);
 
+                suvariAtak = 0;
+                suvariDefans = 0;
+                suvariHasar = 0;
                 kalanHasar = 0;
+                tempSuvari = suvariler_count;
                 suvariler_count = 0;
                 suvari_health = 0;
             }
+            fprintf(file,"Suvari Kalan Can: %d\n", suvari_health);
 
             kusatmaMakineleriHasar += nethasar * ((float)kusatmaMakineleriDefans / (float)humanDefansSabit);
+            fprintf(file,"Kusatma Makineleri Hasar: %d\n", kusatmaMakineleriHasar);
             kusatmaMakineleri_health -= reduceHealth(kusatmaMakineleriHasar, kusatma_makineleri_count);
             kusatmaMakineleriHasar = 0;
             if (kusatmaMakineleri_health < 0) {
                 humanDefans -= kusatmaMakineleriDefans;
                 kusatmaMakineleriDefans = 0;
                 kalanHasar = damageLeft(kusatmaMakineleri_health, kusatma_makineleri_count);
+                fprintf(file,"  Kusatma Makineleri Yok Oldu Kalan Hasar: %d\n", kalanHasar);
                 suvariHasar += damageLeftEach(kalanHasar, suvariDefans, humanDefans);
                 okcuHasar += damageLeftEach(kalanHasar, okcuDefans, humanDefans);
                 piyadeHasar += damageLeftEach(kalanHasar, piyadeDefans, humanDefans);
 
+                kusatmaMakineleriAtak = 0;
+                kusatmaMakineleriDefans = 0;
+                kusatmaMakineleriHasar = 0;
                 kalanHasar = 0;
+                tempKusatmaMakineleri = kusatma_makineleri_count;
                 kusatma_makineleri_count = 0;
                 kusatmaMakineleri_health = 0;
             }
-
+            fprintf(file,"Kusatma Makineleri Kalan Can: %d\n", kusatmaMakineleri_health);
+            orkStep++;
         }
         else    //İNSAN İMPARATORLUGU İSLEMLERİ//////////////////////
         {
-            fprintf(file,"%d . Adım\n", step);
+            fprintf(file,"\n%d . Adım - ", step);
+            fprintf(file,"(Insan Imparatorlugu Saldırıyor)\n");
+            fprintf(file,"__________________________________\n");
             if (piyadeler_count > 0){                
-                if (step % humanUnits[0].criticalChance == 0){
-                    piyadeAtak *= 1.5;
+                if (humanStep % calculateCriticalChance(humanUnits[0].criticalChance) == 0){
+                    piyadeAtak = calculatePiyadeAttack() * 1.5;
                 }
                 else{
                     piyadeAtak = calculatePiyadeAttack();
@@ -363,8 +429,8 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
             }
             fprintf(file,"Piyade Atak: %d\n", piyadeAtak);
             if (okcular_count > 0){
-                if (step % humanUnits[1].criticalChance == 0){
-                    okcuAtak *= 1.5;
+                if (humanStep % calculateCriticalChance(humanUnits[1].criticalChance) == 0){
+                    okcuAtak = calculateOkcuAttack() * 1.5;
                 }
                 else{
                     okcuAtak = calculateOkcuAttack();
@@ -378,8 +444,8 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
             }
             fprintf(file,"Okçu Atak: %d\n", okcuAtak);
             if (suvariler_count > 0){
-                if (step % humanUnits[2].criticalChance == 0){
-                    suvariAtak *= 1.5;
+                if (humanStep % calculateCriticalChance(humanUnits[2].criticalChance) == 0){
+                    suvariAtak = calculateSuvariAttack() * 1.5;
                 }
                 else{
                     suvariAtak = calculateSuvariAttack();
@@ -390,8 +456,8 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
             }
             fprintf(file,"Suvari Atak: %d\n", suvariAtak);
             if (kusatma_makineleri_count > 0){
-                if (step % humanUnits[3].criticalChance == 0){
-                    kusatmaMakineleriAtak *= 1.5;
+                if (humanStep % calculateCriticalChance(humanUnits[3].criticalChance) == 0){
+                    kusatmaMakineleriAtak = calculateKusatmaMakineleriAttack() * 1.5;
                 }
                 else{
                     kusatmaMakineleriAtak = calculateKusatmaMakineleriAttack();
@@ -473,112 +539,118 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
                 }
             }
            //YORGUNLUK KONTROLU
-           if(step % 5 == 0){
+           int isTired = 1;
+           if(step >= 5 && isTired == 1){
                 int yorgunlukSeviyesi = step / 5;
                 float yorgunlukEtkeni = 1;
                 for(int i=0; i < yorgunlukSeviyesi; i++){
                     yorgunlukEtkeni *= 0.9;
                 }
-            humanAtak *= yorgunlukEtkeni;
-            orkDefans *= yorgunlukEtkeni;
+                humanAtak *= yorgunlukEtkeni;
+                orkDefans *= yorgunlukEtkeni;
+                isTired = 0;
            }
-
-            fprintf(file,"Human Atak: %d\n", humanAtak);
-            fprintf(file,"Ork Defans: %d\n", orkDefans);
+            fprintf(file,"İnsan İmparatorlugu Atak: %d\n", humanAtak);
+            fprintf(file,"Ork Lejyonu Defans: %d\n", orkDefans);
             int nethasar = NetHasar(orkDefans, humanAtak);
             if (nethasar < 0) {
                 nethasar = 0;
             }            
             fprintf(file,"Net Hasar: %d\n", nethasar);
         
-            //Ork_Dovusculerı Savaşıyor
             ork_dovusculeriHasar += nethasar * ((float)orkDovusculeriDefans / (float)orkDefansSabit);
             fprintf(file,"Ork Dovusculeri Hasar: %d\n", ork_dovusculeriHasar);
             orkDovusculeri_health -= reduceHealth(ork_dovusculeriHasar, ork_dovusculeri_count);
-            fprintf(file,"Ork Dovusculeri Health: %d\n", orkDovusculeri_health);
-            //orkDovusculeri_health = -9;
             ork_dovusculeriHasar = 0;
             if (orkDovusculeri_health < 0) {
                 orkDefans -= orkDovusculeriDefans; 
                 orkDovusculeriDefans = 0;
                 kalanHasar = damageLeft(orkDovusculeri_health, ork_dovusculeri_count);
+                fprintf(file,"  Ork Dovusculeri Yok Oldu Kalan Hasar: %d\n", kalanHasar);
                 mizrakcilarHasar += damageLeftEach(kalanHasar, mizrakcilarDefans, orkDefans);
-                fprintf(file,"Mizrakcilar Hasar: %d\n", mizrakcilarHasar);
                 varg_binicileriHasar += damageLeftEach(kalanHasar, vargBinicileriDefans, orkDefans);
                 trollerHasar += damageLeftEach(kalanHasar, trollerDefans, orkDefans);
 
+                orkDovusculeriAtak = 0;
+                orkDovusculeriDefans = 0;
+                ork_dovusculeriHasar = 0;
                 kalanHasar = 0;
+                tempOrkDovusculeri = ork_dovusculeri_count;
                 ork_dovusculeri_count = 0;
                 orkDovusculeri_health = 0;
             }
+            fprintf(file,"Ork Dovusculeri Kalan Can: %d\n", orkDovusculeri_health);
 
-            //Birim Hasar hesaplamasında sıkıntı var
-            //Herhangi bir birim oldugunde defansını cıkardıgımız için digerine 
-            //olması gerekenden fazla hasar gidiyor
-            //Mizrakci Savasıyor
-            fprintf(file,"Mizrakcilar Defans: %d\n", mizrakcilarDefans);
-            mizrakcilarTemelHasar += nethasar * ((float)mizrakcilarDefans / (float)orkDefansSabit);
-            mizrakcilarHasar += mizrakcilarTemelHasar;
+            mizrakcilarHasar += nethasar * ((float)mizrakcilarDefans / (float)orkDefansSabit);
             fprintf(file,"Mizrakcilar Hasar: %d\n", mizrakcilarHasar);
             mizrakcilar_health -= reduceHealth(mizrakcilarHasar, mizrakcilar_count);
-            fprintf(file,"Mizrakcilar Vurulduktan Sonraki Health: %d\n", mizrakcilar_health);
             mizrakcilarHasar = 0;
             if (mizrakcilar_health < 0) {
                 orkDefans -= mizrakcilarDefans;
                 mizrakcilarDefans = 0;
                 kalanHasar = damageLeft(mizrakcilar_health, mizrakcilar_count);
-                fprintf(file,"Kalan Hasar: %d\n", kalanHasar);
-                fprintf(file,"Varg Binicileri Hasar1: %d\n", varg_binicileriHasar);
-                varg_binicileriHasar = damageLeftEach(kalanHasar, vargBinicileriDefans, orkDefans);
-                trollerHasar = damageLeftEach(kalanHasar, trollerDefans, orkDefans);
-                ork_dovusculeriHasar = damageLeftEach(kalanHasar, orkDovusculeriDefans, orkDefans);
+                fprintf(file,"  Mizrakcilar Yok Oldu Kalan Hasar: %d\n", kalanHasar);
+                varg_binicileriHasar += damageLeftEach(kalanHasar, vargBinicileriDefans, orkDefans);
+                trollerHasar += damageLeftEach(kalanHasar, trollerDefans, orkDefans);
+                ork_dovusculeriHasar += damageLeftEach(kalanHasar, orkDovusculeriDefans, orkDefans);
                 
+                mizrakcilarAtak = 0;
+                mizrakcilarDefans = 0;
+                mizrakcilarHasar = 0;
                 kalanHasar = 0;
+                tempMizrakcilar = mizrakcilar_count;
                 mizrakcilar_count = 0;
                 mizrakcilar_health = 0;
             }
-            fprintf(file,"Varg Binicileri Hasar2: %d\n", varg_binicileriHasar);
-            //Varg Binicileri Savaşıyor
+            fprintf(file,"Mizrakcilar Kalan Can: %d\n", mizrakcilar_health);
+
             varg_binicileriHasar += nethasar * ((float)vargBinicileriDefans / (float)orkDefansSabit);
-            fprintf(file,"Varg Binicileri Hasar3: %d\n", varg_binicileriHasar);
+            fprintf(file,"Varg Binicileri Hasar: %d\n", varg_binicileriHasar);
             vargBinicileri_health -= reduceHealth(varg_binicileriHasar, varg_binicileri_count);
-            fprintf(file,"Varg Binicileri Vurulduktan sonraki Health: %d\n", vargBinicileri_health);
             varg_binicileriHasar = 0;
             if (vargBinicileri_health < 0) {
                 orkDefans -= vargBinicileriDefans;
                 vargBinicileriDefans = 0;                
                 kalanHasar = damageLeft(vargBinicileri_health, varg_binicileri_count);
+                    fprintf(file,"  Varg Binicileri Yok Oldu Kalan Hasar: %d\n", kalanHasar);
                 trollerHasar += damageLeftEach(kalanHasar, trollerDefans, orkDefans);
                 ork_dovusculeriHasar += damageLeftEach(kalanHasar, orkDovusculeriDefans, orkDefans);
                 mizrakcilarHasar += damageLeftEach(kalanHasar, mizrakcilarDefans, orkDefans);
 
-
+                vargBinicileriAtak = 0;
+                vargBinicileriDefans = 0;
+                varg_binicileriHasar = 0;
                 kalanHasar = 0;
+                tempVargBinicileri = varg_binicileri_count;
                 varg_binicileri_count = 0;
                 vargBinicileri_health = 0;
             }
-            //Troller Savaşıyor
+            fprintf(file,"Varg Binicileri Kalan Can: %d\n", vargBinicileri_health);
+
             trollerHasar += nethasar * ((float)trollerDefans / (float)orkDefansSabit);
             fprintf(file,"Troller Hasar: %d\n", trollerHasar);
             troller_health -= reduceHealth(trollerHasar, troller_count);
-            fprintf(file,"Troller Health: %d\n", troller_health);
             trollerHasar = 0;
-
             if (troller_health < 0) {
                 orkDefans -= trollerDefans;
                 trollerAtak = 0;
                 trollerDefans = 0;
                 kalanHasar = damageLeft(troller_health, troller_count);
+                fprintf(file,"  Troller Yok Oldu Kalan Hasar: %d\n", kalanHasar);
                 ork_dovusculeriHasar += damageLeftEach(kalanHasar, orkDovusculeriDefans, orkDefans);
                 mizrakcilarHasar += damageLeftEach(kalanHasar, mizrakcilarDefans, orkDefans);
                 varg_binicileriHasar += damageLeftEach(kalanHasar, vargBinicileriDefans, orkDefans);               
     
+                trollerAtak = 0;
+                trollerDefans = 0;
+                trollerHasar = 0;
+                kalanHasar = 0;
+                tempTroller = troller_count;
                 troller_count = 0;
                 troller_health = 0;
-                kalanHasar = 0;
             }
-                fprintf(file,"\n------------------------------------------------\n");
-
+            fprintf(file,"Troller Kalan Can: %d\n", troller_health);
+            humanStep++;
         }
         step++;
         
@@ -586,12 +658,12 @@ FILE *file = fopen("battle_sim.txt", "w+"); // Open the file for writing
     
     if (calculateOrkUnits() > 0)
     {
-        fprintf(file,"ork kazandı\n");
+        fprintf(file,"\nORK LEJYONU KAZANDI\n");
         return calculateOrkUnits();
     }
     else
     {
-        fprintf(file,"insan kazandı\n");
+        fprintf(file,"\nINSAN IMPARATORLUGU KAZANDI \n");
         return calculateOrkUnits();
     }
 return 0;

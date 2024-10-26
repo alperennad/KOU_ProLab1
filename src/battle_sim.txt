@@ -1,137 +1,358 @@
 Insan Irkı Birimleri:
-Piyadeler: 1
-Okcular: 1
-Suvariler: 1
-Kuşatma Makineleri: 1
-Aktif Kahraman: 
-Aktif Canavar: 
-1 . Adım
-Piyade Atak: 30
-Okçu Atak: 40
-Suvari Atak: 50
-Kuşatma Makineleri Atak: 100
-Ork Dovusculeri Defans: 25
-Mizrakcilar Defans: 20
-Troller Defans: 40
-Human Atak: 220
-Ork Defans: 120
-Net Hasar: 100
-Ork Dovusculeri Hasar: 20
-Ork Dovusculeri Health: 80
-Mizrakcilar Defans: 20
-Mizrakcilar Hasar: 16
-Mizrakcilar Vurulduktan Sonraki Health: 74
-Varg Binicileri Hasar2: 0
-Varg Binicileri Hasar3: 29
-Varg Binicileri Vurulduktan sonraki Health: 101
-Troller Hasar: 33
-Troller Health: 167
+Piyadeler: 200
+Okcular: 150
+Suvariler: 100
+Kuşatma Makineleri: 10
+Aktif Kahraman: Fatih_Sultan_Mehmet
+Aktif Canavar: Ejderha
+Aktif Araştırma ve Seviyesi : savunma_ustaligi 3
 
-------------------------------------------------
 Ork Lejyonu Birimleri:
-Ork Dovusculeri: 1
-Mizrakcilar: 1
+Ork Dovusculeri: 150
+Mizrakcilar: 120
+Varg Binicileri: 80
+Troller: 50
+Aktif Kahraman: Thruk_Kemikkiran
+Aktif Canavar: Kara_Troll
+Aktif Araştırma ve Seviyesi : saldiri_gelistirmesi 2
+
+1 . Adım - (Insan Imparatorlugu Saldırıyor)
+__________________________________
+Piyade Atak: 6899
+Okçu Atak: 6000
+Suvari Atak: 5000
+Kuşatma Makineleri Atak: 1250
+Ork Dovusculeri Defans: 3750
+Mizrakcilar Defans: 2400
+Troller Defans: 2500
+İnsan İmparatorlugu Atak: 19149
+Ork Lejyonu Defans: 11450
+Net Hasar: 7698
+Ork Dovusculeri Hasar: 2521
+Ork Dovusculeri Kalan Can: 84
+Mizrakcilar Hasar: 1613
+Mizrakcilar Kalan Can: 77
+Varg Binicileri Hasar: 1882
+Varg Binicileri Kalan Can: 107
+Troller Hasar: 1680
+Troller Kalan Can: 167
+
 2 . Adım - (Ork Lejyonu Saldırıyor)
-__________________________________3 . Adım
-Piyade Atak: 30
-Okçu Atak: 40
-Suvari Atak: 50
-Kuşatma Makineleri Atak: 100
-Ork Dovusculeri Defans: 25
-Mizrakcilar Defans: 20
-Troller Defans: 40
-Human Atak: 220
-Ork Defans: 120
-Net Hasar: 100
-Ork Dovusculeri Hasar: 20
-Ork Dovusculeri Health: 60
-Mizrakcilar Defans: 20
-Mizrakcilar Hasar: 32
-Mizrakcilar Vurulduktan Sonraki Health: 42
-Varg Binicileri Hasar2: 0
-Varg Binicileri Hasar3: 29
-Varg Binicileri Vurulduktan sonraki Health: 72
-Troller Hasar: 33
-Troller Health: 134
+__________________________________
+Ork Dovusculeri Atak: 5250
+Mizrakcilar Atak: 5400
+Varg Binicileri Sayısı: 80
+Varg Binicileri Sayısı: 80
+Varg Binicileri Atak: 4400
+Troller Atak: 4200
+Piyade Defans: 8000
+Okcu Defans: 3000
+Suvari Defans: 3000
+Kusatma Makineleri Defans: 500
+Ork Atak: 23100
+İnsan Defans: 18850
+Net Hasar: 4249
+Piyade Hasar: 2344
+Piyade Kalan Can: 89
+Okcu Hasar: 879
+Okcu Kalan Can: 75
+Suvari Hasar: 879
+Suvari Kalan Can: 112
+Kusatma Makineleri Hasar: 146
+Kusatma Makineleri Kalan Can: 136
 
-------------------------------------------------
+3 . Adım - (Insan Imparatorlugu Saldırıyor)
+__________________________________
+Piyade Atak: 6899
+Okçu Atak: 6000
+Suvari Atak: 5000
+Kuşatma Makineleri Atak: 1250
+Ork Dovusculeri Defans: 3750
+Mizrakcilar Defans: 2400
+Troller Defans: 2500
+İnsan İmparatorlugu Atak: 19149
+Ork Lejyonu Defans: 11450
+Net Hasar: 7698
+Ork Dovusculeri Hasar: 2521
+Ork Dovusculeri Kalan Can: 68
+Mizrakcilar Hasar: 1613
+Mizrakcilar Kalan Can: 64
+Varg Binicileri Hasar: 1882
+Varg Binicileri Kalan Can: 84
+Troller Hasar: 1680
+Troller Kalan Can: 134
+
 4 . Adım - (Ork Lejyonu Saldırıyor)
-__________________________________5 . Adım
-Piyade Atak: 45
-Okçu Atak: 40
-Suvari Atak: 50
-Kuşatma Makineleri Atak: 100
-Ork Dovusculeri Defans: 25
-Mizrakcilar Defans: 20
-Troller Defans: 40
-Human Atak: 211
-Ork Defans: 108
-Net Hasar: 103
-Ork Dovusculeri Hasar: 21
-Ork Dovusculeri Health: 39
-Mizrakcilar Defans: 20
-Mizrakcilar Hasar: 49
-Mizrakcilar Vurulduktan Sonraki Health: -7
-Kalan Hasar: 7
-Varg Binicileri Hasar1: 0
-Varg Binicileri Hasar2: 2
-Varg Binicileri Hasar3: 32
-Varg Binicileri Vurulduktan sonraki Health: 40
-Troller Hasar: 37
-Troller Health: 97
+__________________________________
+Ork Dovusculeri Atak: 5250
+Mizrakcilar Atak: 5400
+Varg Binicileri Sayısı: 80
+Varg Binicileri Sayısı: 80
+Varg Binicileri Atak: 4400
+Troller Atak: 4200
+Piyade Defans: 8000
+Okcu Defans: 3000
+Suvari Defans: 3000
+Kusatma Makineleri Defans: 500
+Ork Atak: 23100
+İnsan Defans: 18850
+Net Hasar: 4249
+Piyade Hasar: 2344
+Piyade Kalan Can: 78
+Okcu Hasar: 879
+Okcu Kalan Can: 70
+Suvari Hasar: 879
+Suvari Kalan Can: 104
+Kusatma Makineleri Hasar: 146
+Kusatma Makineleri Kalan Can: 122
 
-------------------------------------------------
+5 . Adım - (Insan Imparatorlugu Saldırıyor)
+__________________________________
+Piyade Atak: 6899
+Okçu Atak: 6000
+Suvari Atak: 5000
+Kuşatma Makineleri Atak: 1250
+Ork Dovusculeri Defans: 3750
+Mizrakcilar Defans: 2400
+Troller Defans: 2500
+İnsan İmparatorlugu Atak: 17234
+Ork Lejyonu Defans: 10305
+Net Hasar: 6929
+Ork Dovusculeri Hasar: 2269
+Ork Dovusculeri Kalan Can: 53
+Mizrakcilar Hasar: 1452
+Mizrakcilar Kalan Can: 52
+Varg Binicileri Hasar: 1694
+Varg Binicileri Kalan Can: 63
+Troller Hasar: 1512
+Troller Kalan Can: 104
+
 6 . Adım - (Ork Lejyonu Saldırıyor)
-__________________________________7 . Adım
-Piyade Atak: 30
-Okçu Atak: 40
-Suvari Atak: 75
-Kuşatma Makineleri Atak: 100
-Ork Dovusculeri Defans: 25
-Mizrakcilar Defans: 0
-Troller Defans: 40
-Human Atak: 245
-Ork Defans: 100
-Net Hasar: 144
-Ork Dovusculeri Hasar: 37
-Ork Dovusculeri Health: 2
-Mizrakcilar Defans: 0
-Mizrakcilar Hasar: 49
-Mizrakcilar Vurulduktan Sonraki Health: -2147483647
-Kalan Hasar: 0
-Varg Binicileri Hasar1: 0
-Varg Binicileri Hasar2: 0
-Varg Binicileri Hasar3: 50
-Varg Binicileri Vurulduktan sonraki Health: -10
-Troller Hasar: 63
-Troller Health: 34
+__________________________________
+Ork Dovusculeri Atak: 5250
+Mizrakcilar Atak: 5400
+Varg Binicileri Sayısı: 80
+Varg Binicileri Sayısı: 80
+Varg Binicileri Atak: 4400
+Troller Atak: 4200
+Piyade Defans: 8000
+Okcu Defans: 3000
+Suvari Defans: 3000
+Kusatma Makineleri Defans: 500
+Ork Atak: 20790
+İnsan Defans: 16965
+Net Hasar: 3824
+Piyade Hasar: 2109
+Piyade Kalan Can: 68
+Okcu Hasar: 791
+Okcu Kalan Can: 65
+Suvari Hasar: 791
+Suvari Kalan Can: 97
+Kusatma Makineleri Hasar: 131
+Kusatma Makineleri Kalan Can: 109
 
-------------------------------------------------
+7 . Adım - (Insan Imparatorlugu Saldırıyor)
+__________________________________
+Piyade Atak: 6899
+Okçu Atak: 6000
+Suvari Atak: 5000
+Kuşatma Makineleri Atak: 1250
+Ork Dovusculeri Defans: 3750
+Mizrakcilar Defans: 2400
+Troller Defans: 2500
+İnsan İmparatorlugu Atak: 17234
+Ork Lejyonu Defans: 10305
+Net Hasar: 6929
+Ork Dovusculeri Hasar: 2269
+Ork Dovusculeri Kalan Can: 38
+Mizrakcilar Hasar: 1452
+Mizrakcilar Kalan Can: 40
+Varg Binicileri Hasar: 1694
+Varg Binicileri Kalan Can: 42
+Troller Hasar: 1512
+Troller Kalan Can: 74
+
 8 . Adım - (Ork Lejyonu Saldırıyor)
-__________________________________9 . Adım
-Piyade Atak: 30
-Okçu Atak: 40
-Suvari Atak: 50
-Kuşatma Makineleri Atak: 100
-Ork Dovusculeri Defans: 25
-Mizrakcilar Defans: 0
-Troller Defans: 40
-Human Atak: 220
-Ork Defans: 65
-Net Hasar: 155
-Ork Dovusculeri Hasar: 62
-Ork Dovusculeri Health: -60
-Mizrakcilar Hasar: 0
-Mizrakcilar Defans: 0
-Mizrakcilar Hasar: 49
-Mizrakcilar Vurulduktan Sonraki Health: -2147483647
-Kalan Hasar: 0
-Varg Binicileri Hasar1: 0
-Varg Binicileri Hasar2: 0
-Varg Binicileri Hasar3: 0
-Varg Binicileri Vurulduktan sonraki Health: 0
-Troller Hasar: 95
-Troller Health: -61
+__________________________________
+Ork Dovusculeri Atak: 5250
+Mizrakcilar Atak: 5400
+Varg Binicileri Sayısı: 80
+Varg Binicileri Sayısı: 80
+Varg Binicileri Atak: 4400
+Troller Atak: 4200
+Piyade Defans: 8000
+Okcu Defans: 3000
+Suvari Defans: 3000
+Kusatma Makineleri Defans: 500
+Ork Atak: 20790
+İnsan Defans: 16965
+Net Hasar: 3824
+Piyade Hasar: 2109
+Piyade Kalan Can: 58
+Okcu Hasar: 791
+Okcu Kalan Can: 60
+Suvari Hasar: 791
+Suvari Kalan Can: 90
+Kusatma Makineleri Hasar: 131
+Kusatma Makineleri Kalan Can: 96
 
-------------------------------------------------
-insan kazandı
+9 . Adım - (Insan Imparatorlugu Saldırıyor)
+__________________________________
+Piyade Atak: 6899
+Okçu Atak: 6000
+Suvari Atak: 5000
+Kuşatma Makineleri Atak: 1250
+Ork Dovusculeri Defans: 3750
+Mizrakcilar Defans: 2400
+Troller Defans: 2500
+İnsan İmparatorlugu Atak: 17234
+Ork Lejyonu Defans: 10305
+Net Hasar: 6929
+Ork Dovusculeri Hasar: 2269
+Ork Dovusculeri Kalan Can: 23
+Mizrakcilar Hasar: 1452
+Mizrakcilar Kalan Can: 28
+Varg Binicileri Hasar: 1694
+Varg Binicileri Kalan Can: 21
+Troller Hasar: 1512
+Troller Kalan Can: 44
+
+10 . Adım - (Ork Lejyonu Saldırıyor)
+__________________________________
+Ork Dovusculeri Atak: 5250
+Mizrakcilar Atak: 5400
+Varg Binicileri Sayısı: 80
+Varg Binicileri Sayısı: 80
+Varg Binicileri Atak: 4400
+Troller Atak: 4200
+Piyade Defans: 8000
+Okcu Defans: 3000
+Suvari Defans: 3000
+Kusatma Makineleri Defans: 500
+Ork Atak: 18711
+İnsan Defans: 15268
+Net Hasar: 3443
+Piyade Hasar: 1899
+Piyade Kalan Can: 49
+Okcu Hasar: 712
+Okcu Kalan Can: 56
+Suvari Hasar: 712
+Suvari Kalan Can: 83
+Kusatma Makineleri Hasar: 118
+Kusatma Makineleri Kalan Can: 85
+
+11 . Adım - (Insan Imparatorlugu Saldırıyor)
+__________________________________
+Piyade Atak: 6899
+Okçu Atak: 6000
+Suvari Atak: 5000
+Kuşatma Makineleri Atak: 1250
+Ork Dovusculeri Defans: 3750
+Mizrakcilar Defans: 2400
+Troller Defans: 2500
+İnsan İmparatorlugu Atak: 15510
+Ork Lejyonu Defans: 9274
+Net Hasar: 6236
+Ork Dovusculeri Hasar: 2042
+Ork Dovusculeri Kalan Can: 10
+Mizrakcilar Hasar: 1307
+Mizrakcilar Kalan Can: 18
+Varg Binicileri Hasar: 1524
+Varg Binicileri Kalan Can: 2
+Troller Hasar: 1361
+Troller Kalan Can: 17
+
+12 . Adım - (Ork Lejyonu Saldırıyor)
+__________________________________
+Ork Dovusculeri Atak: 5250
+Mizrakcilar Atak: 5400
+Varg Binicileri Sayısı: 80
+Varg Binicileri Sayısı: 80
+Varg Binicileri Atak: 4400
+Troller Atak: 4200
+Piyade Defans: 8000
+Okcu Defans: 3000
+Suvari Defans: 3000
+Kusatma Makineleri Defans: 500
+Ork Atak: 18711
+İnsan Defans: 15268
+Net Hasar: 3443
+Piyade Hasar: 1899
+Piyade Kalan Can: 40
+Okcu Hasar: 712
+Okcu Kalan Can: 52
+Suvari Hasar: 712
+Suvari Kalan Can: 76
+Kusatma Makineleri Hasar: 118
+Kusatma Makineleri Kalan Can: 74
+
+13 . Adım - (Insan Imparatorlugu Saldırıyor)
+__________________________________
+Piyade Atak: 6899
+Okçu Atak: 6000
+Suvari Atak: 5000
+Kuşatma Makineleri Atak: 1250
+Ork Dovusculeri Defans: 3750
+Mizrakcilar Defans: 2400
+Troller Defans: 2500
+İnsan İmparatorlugu Atak: 15510
+Ork Lejyonu Defans: 9274
+Net Hasar: 6236
+Ork Dovusculeri Hasar: 2042
+  Ork Dovusculeri Yok Oldu Kalan Hasar: 450
+Ork Dovusculeri Kalan Can: 0
+Mizrakcilar Hasar: 1502
+Mizrakcilar Kalan Can: 6
+Varg Binicileri Hasar: 1752
+  Varg Binicileri Yok Oldu Kalan Hasar: 1520
+Varg Binicileri Kalan Can: 0
+Troller Hasar: 2959
+  Troller Yok Oldu Kalan Hasar: 2100
+Troller Kalan Can: 0
+
+14 . Adım - (Ork Lejyonu Saldırıyor)
+__________________________________
+Ork Dovusculeri Atak: 0
+Mizrakcilar Atak: 5400
+Varg Binicileri Sayısı: 0
+Varg Binicileri Atak: 0
+Troller Atak: 0
+Piyade Defans: 8000
+Okcu Defans: 3000
+Suvari Defans: 3000
+Kusatma Makineleri Defans: 500
+Ork Atak: 5248
+İnsan Defans: 15268
+Net Hasar: 0
+Piyade Hasar: 0
+Piyade Kalan Can: 40
+Okcu Hasar: 0
+Okcu Kalan Can: 52
+Suvari Hasar: 0
+Suvari Kalan Can: 76
+Kusatma Makineleri Hasar: 0
+Kusatma Makineleri Kalan Can: 74
+
+15 . Adım - (Insan Imparatorlugu Saldırıyor)
+__________________________________
+Piyade Atak: 6899
+Okçu Atak: 6000
+Suvari Atak: 5000
+Kuşatma Makineleri Atak: 1250
+Ork Dovusculeri Defans: 0
+Mizrakcilar Defans: 2400
+Troller Defans: 0
+İnsan İmparatorlugu Atak: 13959
+Ork Lejyonu Defans: 1749
+Net Hasar: 12210
+Ork Dovusculeri Hasar: 0
+Ork Dovusculeri Kalan Can: 0
+Mizrakcilar Hasar: 36049
+  Mizrakcilar Yok Oldu Kalan Hasar: 35280
+Mizrakcilar Kalan Can: 0
+Varg Binicileri Hasar: 0
+Varg Binicileri Kalan Can: 0
+Troller Hasar: 0
+Troller Kalan Can: 0
+
+INSAN IMPARATORLUGU KAZANDI 

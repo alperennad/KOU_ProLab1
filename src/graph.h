@@ -20,6 +20,8 @@ struct Ork {
 };
 
 void Game(struct Human *human, struct Ork *ork);
-void StartScreen();
+
+
+void HealthCheck(int piyadeler_count, int okcular_count, int suvariler_count, int kusatma_makineleri_count, int ork_dovusculeri_count, int mizrakcilar_count, int varg_binicileri_count, int troller_count);
 
 #endif
